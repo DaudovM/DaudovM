@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     var operation: Int = 0
     var sigh: Bool = false
     var array = [Character]()
-    var symbolMinus = "-"
+    var symbolMinus = " "
     var plusminus: Bool = false //проверяет есть ли Символ "-" в строке
     var nn: Bool = false // проверяет есть ли Символ "." в строке
     var mm = true   //Проверает нажал ли кнопки Вычисление
@@ -24,8 +24,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        if label.text == "" {
+            
+        }
     }
     @IBAction func button(_ sender: UIButton) {
+        
         if sigh == true{
             label.text = String(sender.tag)
             sigh = false
@@ -39,6 +43,7 @@ class ViewController: UIViewController {
                 nn = true
             } else if (array.firstIndex(of: "-") != nil) {
                 plusminus = true
+                
             }
             
         }
@@ -54,9 +59,13 @@ class ViewController: UIViewController {
     }
     @IBAction func plusminus(_ sender: UIButton) {
         if label.text != "/" && label.text != "x" && label.text != "-" && label.text != "+" && plusminus != true {
-            
+            symbolMinus = "-"
             label.text = symbolMinus + label.text!
             plusminus = true
+            
+        }else {
+            label.text?.removeFirst()
+            plusminus = false
         }
     }
     @IBAction func buttonsigh(_ sender: UIButton) {
